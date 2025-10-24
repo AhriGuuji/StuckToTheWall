@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -83,15 +84,15 @@ public class Player : MonoBehaviour
         RaycastHit _hit;
 
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.forward,
+        if (Physics.Raycast(transform.position, transform.forward + -transform.up,
             out _hit, rayCastLenght, layerMask))
         {
             //StartCoroutine(JumpWall());
 
             _wallNormal = _hit.transform.gameObject.GetComponent<SetNormal>().Normal;
             float rotation = Mathf.Clamp(-Vector3.Angle(transform.up, _wallNormal), -90, 90);
-            Quaternion quaternion = Quaternion.Euler(new(rotation,0,0));
-            _rb.MoveRotation(_rb.rotation*quaternion);
+            Quaternion quaternion = Quaternion.AngleAxis(rotation,Vector3.right);
+            _rb.MoveRotation(_rb.rotation * quaternion);
             _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
         else _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);

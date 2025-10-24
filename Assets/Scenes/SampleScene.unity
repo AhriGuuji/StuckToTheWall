@@ -1645,6 +1645,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7543904117081291052, guid: 3e0c0d874a28b554e9eb692986bce2fa, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -5390689351210449407, guid: 3e0c0d874a28b554e9eb692986bce2fa, type: 3}
@@ -2282,6 +2286,7 @@ GameObject:
   - component: {fileID: 2028756943}
   - component: {fileID: 2028756940}
   - component: {fileID: 2028756939}
+  - component: {fileID: 2028756947}
   - component: {fileID: 2028756946}
   m_Layer: 0
   m_Name: Player
@@ -2302,10 +2307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32b08860c7fe224b9b184cc41270c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 2028756946}
-  _moveVelocity: 10
+  _rb: {fileID: 2028756946}
+  _moveVelocity: 500
   _rotationVelocity: 15
-  _gravity: 9.81
+  _gravity: 34.335
   rayCastLenght: 3
   layerMask:
     serializedVersion: 2
@@ -2402,15 +2407,42 @@ Transform:
   m_GameObject: {fileID: 2028756938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: 15.4, z: -5}
+  m_LocalPosition: {x: 2.1, y: 14, z: -5}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &2028756946
-CharacterController:
+--- !u!54 &2028756946
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028756938}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
+--- !u!136 &2028756947
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2424,15 +2456,13 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.9999999
+  serializedVersion: 2
   m_Radius: 0.49999997
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Height: 1.9999999
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2041970091
 GameObject:
