@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Diagnostics;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -22,12 +18,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _rotationVelocity;
     [SerializeField]
+    private float _limY;
+    [SerializeField]
     private float _gravity = 9.81f;
     [SerializeField]
     private float rayCastLenght = 1;
     [SerializeField]
+    private float _raycastDownwardMultiplier = 2;
+    [SerializeField]
     private LayerMask layerMask;
-
+    private Vector3 _head;
     private Vector3 _wallNormal;
 
     private void Awake()
@@ -39,8 +39,6 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         _cam = GetComponentInChildren<Camera>();
-
-        _rb.MovePosition(_rb.position + -transform.up * _gravity * Time.fixedDeltaTime);
     }
     private void Update()
     {
@@ -84,34 +82,25 @@ public class Player : MonoBehaviour
         RaycastHit _hit;
 
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.forward + -transform.up,
+        if (Physics.Raycast(transform.position, transform.forward + -transform.up*_raycastDownwardMultiplier,
             out _hit, rayCastLenght, layerMask))
         {
             //StartCoroutine(JumpWall());
 
             _wallNormal = _hit.transform.gameObject.GetComponent<SetNormal>().Normal;
-            float rotation = Mathf.Clamp(-Vector3.Angle(transform.up, _wallNormal), -90, 90);
-            Quaternion quaternion = Quaternion.AngleAxis(rotation,Vector3.right);
-            _rb.MoveRotation(_rb.rotation * quaternion);
+            //float rotation = Mathf.Clamp(-Vector3.Angle(transform.up, _wallNormal), -45, 45);
+            transform.rotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
             _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
         else _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+    }
 
-        //_hit = Physics.Raycast(transform.position, -transform.up, rayCastLenght);
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, (transform.forward + -transform.up*_raycastDownwardMultiplier)*rayCastLenght);
     }
     
-    /*private IEnumerator JumpWall()
-    {
-        while(true)
-        {
-            _controller.Move(transform.up*Time.deltaTime);
-
-            yield return new WaitForSeconds(1);
-
-            yield break;
-        }
-    }*/
-
     private void OnEnable()
     {
         _inputMovement.Enable();
