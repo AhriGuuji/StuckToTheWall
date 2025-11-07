@@ -26,11 +26,11 @@ public class Player : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField]
-    private float rayCastLenght = 1;
+    private float _raycastLenght = 1;
     [SerializeField]
     private float _raycastDownwardMultiplier = 2;
     [SerializeField]
-    private LayerMask layerMask;
+    private LayerMask _mask;
     private Vector3 _wallNormal;
 
     private void Awake()
@@ -85,9 +85,8 @@ public class Player : MonoBehaviour
     {
         RaycastHit _hit;
 
-        // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.forward + -transform.up * _raycastDownwardMultiplier,
-            out _hit, rayCastLenght, layerMask))
+            out _hit, _raycastLenght, _mask))
         {
             _wallNormal = _hit.transform.gameObject.GetComponent<SetNormal>().Normal;
 
@@ -113,7 +112,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, (transform.forward + -transform.up * _raycastDownwardMultiplier) * rayCastLenght);
+        Gizmos.DrawRay(transform.position, (transform.forward + -transform.up * _raycastDownwardMultiplier) * _raycastLenght);
     }
 
     private void OnEnable()
