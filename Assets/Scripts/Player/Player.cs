@@ -5,33 +5,36 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    private InputAction _inputMovement;
-    private Vector2 _currentMove;
-    private InputAction _inputLook;
-    private Vector2 _currentLook;
-    private Rigidbody _rb;
-    private Camera _cam;
+    private InputAction         _inputMovement;
+    private Vector2             _currentMove;
+    private InputAction         _inputLook;
+    private Vector2             _currentLook;
+    private Rigidbody           _rb;
+    private Camera              _cam;
+    private Vector3             _camRotation;
 
     [Header("Movement and Physics")]
     [SerializeField]
-    private float _movVel;
+    private float               _movVel;
     [SerializeField]
-    private float _rotVel;
+    private float               _rotVel;
     [SerializeField]
-    private float _wallRotVel;
+    private float               _wallRotVel;
     [SerializeField]
-    private float _limY;
+    private float               _limYUp;
     [SerializeField]
-    private float _gravity = 9.81f;
+    private float               _limYDown;
+    [SerializeField]
+    private float               _gravity = 9.81f;
 
     [Header("Raycast Settings")]
     [SerializeField]
-    private float _raycastLenght = 1;
+    private float               _raycastLenght = 1;
     [SerializeField]
-    private float _raycastDownwardMultiplier = 2;
+    private float               _raycastDownwardMultiplier = 2;
     [SerializeField]
-    private LayerMask _mask;
-    private Vector3 _wallNormal;
+    private LayerMask           _mask;
+    private Vector3             _wallNormal;
 
     private void Awake()
     {
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         _cam = GetComponentInChildren<Camera>();
+        _cam.transform.rotation = Quaternion.identity;
         _rb = GetComponent<Rigidbody>();
     }
     private void Update()
@@ -76,9 +80,16 @@ public class Player : MonoBehaviour
 
     private void LookY()
     {
-        float rotateAmount = -_currentLook.y * _rotVel * Time.fixedDeltaTime;
-        Vector3 rotation = new(rotateAmount, 0, 0);
-        _cam.transform.Rotate(rotation, Space.Self);
+        _camRotation = _cam.transform.localEulerAngles;
+
+        _camRotation.x -= _currentLook.y;
+
+        if (_camRotation.x > 180f)
+            _camRotation.x = Mathf.Max(_limYUp, _camRotation.x);
+        else
+            _camRotation.x = Mathf.Min(_limYDown, _camRotation.x);
+
+        _cam.transform.localEulerAngles = _camRotation;
     }
 
     private void ApplyGravity()
