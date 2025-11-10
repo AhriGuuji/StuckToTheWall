@@ -918,6 +918,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 160786595adc8b04dbe18f431a17df4c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1235159894}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 160786595adc8b04dbe18f431a17df4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1235159898}
   m_SourcePrefab: {fileID: 100100000, guid: 160786595adc8b04dbe18f431a17df4c, type: 3}
 --- !u!1 &1235159893 stripped
 GameObject:
@@ -937,7 +940,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactiveData: {fileID: 11400000, guid: 00ce45c84ad46274d85599545772a896, type: 2}
-  isOn: 1
+  isOn: 0
+--- !u!65 &1235159898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235159893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.000000029802322}
 --- !u!1 &1251015918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ef507adef9c19bd41892e8407667fa98, type: 3}
@@ -1770,7 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 1458356887}
-  _maxInteractionDistance: 1.5
+  _maxInteractionDistance: 2
   _interactInput: Interact
 --- !u!1 &2106389391 stripped
 GameObject:
