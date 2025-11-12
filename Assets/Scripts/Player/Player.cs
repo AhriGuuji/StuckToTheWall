@@ -45,7 +45,6 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         _cam = GetComponentInChildren<Camera>();
-        _cam.transform.localRotation = Quaternion.identity;
         _rb = GetComponent<Rigidbody>();
     }
     private void Update()

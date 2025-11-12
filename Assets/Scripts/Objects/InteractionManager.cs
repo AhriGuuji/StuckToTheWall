@@ -26,7 +26,11 @@ public class InteractionManager : MonoBehaviour
 
     public PlayerInventory  playerInventory         => _playerInventory;
     public string           awakeAnimationName      => _awakeAnimationName;
-    public string           interactAnimationName   => _interactAnimationName;
+    public string interactAnimationName => _interactAnimationName;
+
+    //Changed By Me
+    private List<Interactive> _completedPuzzles;
+    private Vector3 _lastCompletedPuzzle;
 
     void Awake()
     {
@@ -67,6 +71,12 @@ public class InteractionManager : MonoBehaviour
             }
         }
     }
+    /*public void CompletedPuzzle(Interactive interactive)
+    {
+        _lastCompletedPuzzle = playerInventory.transform.position;
+
+        interactive.PuzzleDone += OnPickUp;
+    }*/
 
     public Interactive FindInteractive(InteractiveData interactiveData)
     {

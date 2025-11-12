@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,10 @@ public class Interactive : MonoBehaviour
     public bool             isOn;
     public InteractiveData  interactiveData => _interactiveData;
     public string           inventoryName   => _interactiveData.inventoryName;
-    public Sprite           inventoryIcon   => _interactiveData.inventoryIcon;
+    public Sprite inventoryIcon => _interactiveData.inventoryIcon;
+
+    //My changes
+    public event Action PuzzleDone;
 
     void Awake()
     {
@@ -97,6 +101,11 @@ public class Interactive : MonoBehaviour
     {
         _playerInventory.Add(this);
         gameObject.SetActive(false);
+    }
+
+    public static bool OnPickUp()
+    {
+        return true;
     }
 
     private void DoDirectInteraction()
