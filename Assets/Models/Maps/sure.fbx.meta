@@ -3,7 +3,97 @@ guid: cb185e921aec26f40bce87ca8ebb6ad0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader10
+    second: {fileID: 2100000, guid: a644893893c8d5c429ff431d5e942735, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader11
+    second: {fileID: 2100000, guid: 2c83736924bf92243b203b3dfa416a23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader4
+    second: {fileID: 2100000, guid: cfe784e274bf06a46861e697567e2dda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader5
+    second: {fileID: 2100000, guid: b1198245b59edc848b3f00f1edcece9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader7
+    second: {fileID: 2100000, guid: bb6acdd049d5b8d42949b23674043985, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader8
+    second: {fileID: 2100000, guid: d9e2b090c76dbc24ba408028e01c0a61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buddy1_rampShader9
+    second: {fileID: 2100000, guid: 28fecd8bcf0ba1c46a301d7eb5882944, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader1
+    second: {fileID: 2100000, guid: 5752d6aae40f885488aea4ee53e6afc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader10
+    second: {fileID: 2100000, guid: f0dc586a5d07d1241ac91a0d2e498cd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader12
+    second: {fileID: 2100000, guid: 8e8aa2be8209ebb438670483f771c923, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader13
+    second: {fileID: 2100000, guid: d8238cb511730c948974f56702d534c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader2
+    second: {fileID: 2100000, guid: da5ea868a3e571d4e8242b9b3579e03a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader3
+    second: {fileID: 2100000, guid: d0073c9956cd41e45842a7523d0ded22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader7
+    second: {fileID: 2100000, guid: 446be0ef28a749048baaf49487f08d77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader8
+    second: {fileID: 2100000, guid: b2b29c705a9fe734298251feca2c0618, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBR_shader9
+    second: {fileID: 2100000, guid: 0a6ce6fa16931064297de8c24e93648f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orange
+    second: {fileID: 2100000, guid: 9f7a0bfb534fddf4b85e37cad3cdfeb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellow
+    second: {fileID: 2100000, guid: 7b4cd73528a5755459ca28e839f1f718, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -65,7 +155,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60

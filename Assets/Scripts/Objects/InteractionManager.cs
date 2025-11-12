@@ -17,6 +17,9 @@ public class InteractionManager : MonoBehaviour
     }
 
     [SerializeField] private PlayerInventory    _playerInventory;
+    [SerializeField] private PlayerInteraction  _playerInteraction;
+    [SerializeField] private Player             _playerMovement;
+    [SerializeField] private Camera             _playerHead;
     [SerializeField] private string             _interactPrefix;
     [SerializeField] private string             _pickPrefix;
     [SerializeField] private string             _awakeAnimationName;
@@ -24,9 +27,12 @@ public class InteractionManager : MonoBehaviour
 
     private List<Interactive> _interactives;
 
-    public PlayerInventory  playerInventory         => _playerInventory;
-    public string           awakeAnimationName      => _awakeAnimationName;
-    public string interactAnimationName => _interactAnimationName;
+    public PlayerInventory      playerInventory         => _playerInventory;
+    public PlayerInteraction    playerInteraction       => _playerInteraction;
+    public Player               player                  => _playerMovement;
+    public Camera               playerHead              => _playerHead;
+    public string               awakeAnimationName      => _awakeAnimationName;
+    public string               interactAnimationName   => _interactAnimationName;
 
     //Changed By Me
     private List<Interactive> _completedPuzzles;

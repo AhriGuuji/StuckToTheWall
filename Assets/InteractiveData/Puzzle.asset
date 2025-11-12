@@ -16,9 +16,10 @@ MonoBehaviour:
   startsOn: 1
   inventoryName: 
   inventoryIcon: {fileID: 0}
+  oneUse: 0
+  isPuzzle: 1
   requirements:
   - {fileID: 11400000, guid: 00ce45c84ad46274d85599545772a896, type: 2}
   requirementsMessage: U need a Key Card!
   interactionMessages:
-  - Open
-  - Close
+  - Use me!
