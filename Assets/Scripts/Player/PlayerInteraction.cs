@@ -5,21 +5,17 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private UIManager  _uiManager;
     [SerializeField] private float      _maxInteractionDistance;
-    [SerializeField] private string     _interactInput = "Interact";
-    [SerializeField] private string     _dropInput = "Drop";
     private Transform   _cameraTransform;
     private Interactive _currentInteractive;
     private bool _refreshCurrentInteractive;
-    private InputAction _interact;
-    private InputAction _drop;
+    private InteractionManager _manager;
 
     void Start()
     {
         _cameraTransform            = GetComponentInChildren<Camera>().transform;
         _currentInteractive         = null;
-        _refreshCurrentInteractive = false;
-        _interact = InputSystem.actions.FindAction(_interactInput);
-        _drop = InputSystem.actions.FindAction(_dropInput);
+        _refreshCurrentInteractive  = false;
+        _manager                    = InteractionManager.instance;
     }
 
     void Update()
@@ -77,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckForPlayerInteraction()
     {
-        if (_interact.WasPressedThisFrame() 
+        if (_manager.InputInteract.WasPressedThisFrame() 
             && _currentInteractive != null 
             && !_currentInteractive.doingPuzzle)
         {
@@ -85,7 +81,7 @@ public class PlayerInteraction : MonoBehaviour
             _refreshCurrentInteractive = true;
         }
 
-        if (_drop.WasPressedThisFrame() 
+        if (_manager.InputDrop.WasPressedThisFrame() 
             && _currentInteractive != null)
         {
             if (_currentInteractive.doingPuzzle)

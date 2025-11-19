@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    private InputAction         _inputMovement;
     private Vector2             _currentMove;
-    private InputAction         _inputLook;
     private Vector2             _currentLook;
     private Rigidbody           _rb;
     private Camera              _cam;
     private Vector3             _camRotation;
+    private InteractionManager  _manager;
+    public Camera               Cam => _cam;
 
     [Header("Movement and Physics")]
     [SerializeField]
@@ -38,19 +38,14 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _inputMovement = InputSystem.actions.FindAction("Move");
-        _inputLook = InputSystem.actions.FindAction("Look");
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+        _manager = InteractionManager.instance;
         _cam = GetComponentInChildren<Camera>();
         _rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        _currentMove = _inputMovement.ReadValue<Vector2>();
-        _currentLook = _inputLook.ReadValue<Vector2>();
+        _currentMove = _manager.InputMovement.ReadValue<Vector2>();
+        _currentLook = _manager.InputLook.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
@@ -102,9 +97,9 @@ public class Player : MonoBehaviour
 
             StartCoroutine(SwitchWall());
 
-            _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+            _rb.AddForce(-transform.up * (_gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
         }
-        else _rb.AddForce(-transform.up * _gravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+        else _rb.AddForce(-transform.up * (_gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
     }
 
     private IEnumerator SwitchWall()
@@ -123,17 +118,5 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position, (transform.forward + -transform.up * _raycastDownwardMultiplier) * _raycastLenght);
-    }
-
-    private void OnEnable()
-    {
-        _inputMovement.Enable();
-        _inputLook.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputMovement.Disable();
-        _inputLook.Disable();
     }
 }

@@ -14,6 +14,7 @@ public class Interactive : MonoBehaviour
     private PlayerInventory     _playerInventory;
     private PlayerInteraction   _playerInteraction;
     private Player              _playerMovement;
+    private PlayerMinigame      _playerMinigame;
     private Camera              _playerHead;
     private List<Interactive>   _requirements;
     private List<Interactive>   _dependents;
@@ -29,10 +30,6 @@ public class Interactive : MonoBehaviour
     public InteractiveData  interactiveData => _interactiveData;
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite inventoryIcon => _interactiveData.inventoryIcon;
-
-    //My changes
-    public event Action PuzzleDone;
-
     void Awake()
     {
         _interactionManager = InteractionManager.instance;
@@ -40,6 +37,7 @@ public class Interactive : MonoBehaviour
         _playerInteraction  = _interactionManager.playerInteraction;
         _playerMovement     = _interactionManager.player;
         _playerHead         = _interactionManager.playerHead;
+        _playerMinigame     = _interactionManager.playerMinigame;
         _requirements       = new List<Interactive>();
         _dependents         = new List<Interactive>();
         _animator           = GetComponent<Animator>();
@@ -104,10 +102,9 @@ public class Interactive : MonoBehaviour
 
     public void Leave()
     {
-        Debug.Log("HI");
         doingPuzzle = false;
         _playerInteraction.enabled = false;
-        Debug.Log(_saveHeadTrans);
+        _playerMinigame.enabled = false;
         StartCoroutine(MoveCam(_playerHead.transform, _saveHeadTrans));
     }
 
@@ -129,11 +126,6 @@ public class Interactive : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public static bool OnPickUp()
-    {
-        return true;
-    }
-
     private void DoDirectInteraction()
     {
         ++_interactionCount;
@@ -143,6 +135,7 @@ public class Interactive : MonoBehaviour
 
         CheckDependentsRequirements();
         DoIndirectInteractions();
+        DoSomething();
 
         if (isPuzzle)
             MoveToPuzzle();
@@ -167,6 +160,7 @@ public class Interactive : MonoBehaviour
         doingPuzzle = true;
         _playerMovement.enabled = false;
         _playerInteraction.enabled = false;
+        _playerMinigame.enabled = true;
 
         StartCoroutine(MoveCam(_playerHead.transform,_camTrans));
     }
@@ -209,10 +203,10 @@ public class Interactive : MonoBehaviour
         {
             if (!requirement._requirementsMet || 
                (!requirement.IsType(InteractiveData.Type.Indirect) && requirement._interactionCount == 0))
-               {
-                    _requirementsMet = false;
-                    return;
-               }
+            {
+                _requirementsMet = false;
+                return;
+            }
         }
 
         _requirementsMet = true;
@@ -250,4 +244,6 @@ public class Interactive : MonoBehaviour
 
         CheckRequirements();
     }
+
+    public virtual void DoSomething() { }
 }

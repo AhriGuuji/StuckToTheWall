@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -15,21 +16,32 @@ public class InteractionManager : MonoBehaviour
             return _instance;
         }
     }
-
     [SerializeField] private PlayerInventory    _playerInventory;
     [SerializeField] private PlayerInteraction  _playerInteraction;
     [SerializeField] private Player             _playerMovement;
+    [SerializeField] private PlayerMinigame     _playerMinigame;
     [SerializeField] private Camera             _playerHead;
     [SerializeField] private string             _interactPrefix;
     [SerializeField] private string             _pickPrefix;
     [SerializeField] private string             _awakeAnimationName;
     [SerializeField] private string             _interactAnimationName;
+    
+    [Header("InputManagement")]
+    [SerializeField] private string moveInputName = "Move";
+    [SerializeField] private string lookInputName = "Look";
+    [SerializeField] private string interactInputName = "Interact";
+    [SerializeField] private string dropInputName = "Drop";
+    public InputAction         InputLook => InputSystem.actions.FindAction(lookInputName);
+    public InputAction         InputMovement => InputSystem.actions.FindAction(moveInputName);
+    public InputAction         InputInteract => InputSystem.actions.FindAction(interactInputName);
+    public InputAction         InputDrop => InputSystem.actions.FindAction(dropInputName);
 
-    private List<Interactive> _interactives;
+    private List<Interactive>  _interactives;
 
     public PlayerInventory      playerInventory         => _playerInventory;
     public PlayerInteraction    playerInteraction       => _playerInteraction;
     public Player               player                  => _playerMovement;
+    public PlayerMinigame       playerMinigame          => _playerMinigame;
     public Camera               playerHead              => _playerHead;
     public string               awakeAnimationName      => _awakeAnimationName;
     public string               interactAnimationName   => _interactAnimationName;
