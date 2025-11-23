@@ -22,6 +22,7 @@ public class Interactive : MonoBehaviour
     private bool                _requirementsMet;
     private int                 _interactionCount;
     private Transform           _saveHeadTrans;
+    private bool                _puzzleCompleted;
 
     public bool             isOn;
     public bool             useOnce;
@@ -30,6 +31,7 @@ public class Interactive : MonoBehaviour
     public InteractiveData  interactiveData => _interactiveData;
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite inventoryIcon => _interactiveData.inventoryIcon;
+    public bool IsDone => PuzzleFinished();
     void Awake()
     {
         _interactionManager = InteractionManager.instance;
@@ -246,4 +248,9 @@ public class Interactive : MonoBehaviour
     }
 
     public virtual void DoSomething() { }
+
+    protected virtual bool PuzzleFinished()
+    {
+        return true;
+    }
 }
