@@ -32,6 +32,7 @@ public class Interactive : MonoBehaviour
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite inventoryIcon => _interactiveData.inventoryIcon;
     public bool IsDone => PuzzleFinished();
+    public event Action VerifyComplete;
     void Awake()
     {
         _interactionManager = InteractionManager.instance;
@@ -247,7 +248,7 @@ public class Interactive : MonoBehaviour
         CheckRequirements();
     }
 
-    public virtual void DoSomething() { }
+    public virtual void DoSomething() { VerifyComplete?.Invoke(); }
 
     protected virtual bool PuzzleFinished()
     {
