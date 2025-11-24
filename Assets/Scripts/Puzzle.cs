@@ -1,20 +1,38 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-namespace DefaultNamespace
+public class Puzzle
 {
-    public class Puzzle
-    {
-        [SerializeField] private IEnumerable<Interactive> puzzlePieces;
+    public bool IsComplete => PuzzleCompleted();
+    [SerializeField] private readonly IEnumerable<Interactive> _puzzlePieces;
+    private readonly Func<IEnumerable<Interactive>, bool> _puzzleCompleted = pieces =>
+        pieces.All(puzzlePiece => puzzlePiece.IsDone);
         
-        public bool PuzzleCompleted()
-        {
-            Func<IEnumerable<Interactive>, bool> puzzleCompleted = pieces =>
-                pieces.All(puzzlePiece => puzzlePiece.IsDone);
-    
-            return puzzleCompleted(puzzlePieces);
-        }
+    public event Action VerifyComplete;
+
+    public Puzzle(IEnumerable<Interactive> puzzlePieces)
+    {
+        _puzzlePieces = puzzlePieces;
     }
+
+    public void OnTryPuzzle()
+    {
+        if (PuzzleCompleted())
+            DoPuzzleReward();
+    }
+
+    private bool PuzzleCompleted()
+    {
+        VerifyComplete -= OnTryPuzzle;
+        return _puzzleCompleted(_puzzlePieces);
+    }
+
+    private void Start()
+    {
+        VerifyComplete?.Invoke();
+    }
+
+    protected virtual void DoPuzzleReward(){}
 }
