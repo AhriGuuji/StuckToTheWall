@@ -5,18 +5,17 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private UIManager  _uiManager;
     [SerializeField] private float      _maxInteractionDistance;
-    [SerializeField] private string     _interactInput;
     private Transform   _cameraTransform;
     private Interactive _currentInteractive;
     private bool _refreshCurrentInteractive;
-    private InputAction _interact;
+    private InteractionManager _manager;
 
     void Start()
     {
         _cameraTransform            = GetComponentInChildren<Camera>().transform;
         _currentInteractive         = null;
-        _refreshCurrentInteractive = false;
-        _interact = InputSystem.actions.FindAction(_interactInput);
+        _refreshCurrentInteractive  = false;
+        _manager                    = InteractionManager.instance;
     }
 
     void Update()
@@ -74,10 +73,19 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckForPlayerInteraction()
     {
-        if (_interact.WasPressedThisFrame() && _currentInteractive != null)
+        if (_manager.InputInteract.WasPressedThisFrame() 
+            && _currentInteractive != null 
+            && !_currentInteractive.doingPuzzle)
         {
             _currentInteractive.Interact();
             _refreshCurrentInteractive = true;
+        }
+
+        if (_manager.InputDrop.WasPressedThisFrame() 
+            && _currentInteractive != null)
+        {
+            if (_currentInteractive.doingPuzzle)
+                _currentInteractive.Leave();
         }
     }
 

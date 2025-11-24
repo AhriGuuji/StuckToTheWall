@@ -1,37 +1,55 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
     [SerializeField] private InteractiveData _interactiveData;
+    [Range(0f, 1f)][SerializeField] private float _transSpeed;
+    [SerializeField] private float _snap = 0.05f;
+    [SerializeField] private Transform _camTrans;
 
     private InteractionManager  _interactionManager;
     private PlayerInventory     _playerInventory;
+    private PlayerInteraction   _playerInteraction;
+    private Player              _playerMovement;
+    private PlayerMinigame      _playerMinigame;
+    private Camera              _playerHead;
     private List<Interactive>   _requirements;
     private List<Interactive>   _dependents;
     private Animator            _animator;
     private bool                _requirementsMet;
     private int                 _interactionCount;
+    private Transform           _saveHeadTrans;
+    private bool                _puzzleCompleted;
 
     public bool             isOn;
+    public bool             useOnce;
+    public bool             isPuzzle;
+    public bool             doingPuzzle;
     public InteractiveData  interactiveData => _interactiveData;
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite inventoryIcon => _interactiveData.inventoryIcon;
-
-    //My changes
-    public event Action PuzzleDone;
-
+    public bool IsDone => PuzzleFinished();
+    public event Action VerifyComplete;
     void Awake()
     {
         _interactionManager = InteractionManager.instance;
         _playerInventory    = _interactionManager.playerInventory;
+        _playerInteraction  = _interactionManager.playerInteraction;
+        _playerMovement     = _interactionManager.player;
+        _playerHead         = _interactionManager.playerHead;
+        _playerMinigame     = _interactionManager.playerMinigame;
         _requirements       = new List<Interactive>();
         _dependents         = new List<Interactive>();
         _animator           = GetComponent<Animator>();
         _requirementsMet    = _interactiveData.requirements.Length == 0;
         _interactionCount   = 0;
         isOn                = _interactiveData.startsOn;
+        useOnce             = _interactiveData.oneUse;
+        isPuzzle            = _interactiveData.isPuzzle;
+        doingPuzzle         = false;
 
         _interactionManager.RegisterInteractive(this);
     }
@@ -85,6 +103,14 @@ public class Interactive : MonoBehaviour
             UseRequirementFromInventory();
     }
 
+    public void Leave()
+    {
+        doingPuzzle = false;
+        _playerInteraction.enabled = false;
+        _playerMinigame.enabled = false;
+        StartCoroutine(MoveCam(_playerHead.transform, _saveHeadTrans));
+    }
+
     private void InteractSelf(bool direct)
     {
         if (direct && IsType(InteractiveData.Type.Indirect))
@@ -103,11 +129,6 @@ public class Interactive : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public static bool OnPickUp()
-    {
-        return true;
-    }
-
     private void DoDirectInteraction()
     {
         ++_interactionCount;
@@ -117,8 +138,60 @@ public class Interactive : MonoBehaviour
 
         CheckDependentsRequirements();
         DoIndirectInteractions();
+        DoSomething();
+
+        if (isPuzzle)
+            MoveToPuzzle();
 
         PlayAnimation(_interactionManager.interactAnimationName);
+    }
+
+    private void MoveToPuzzle()
+    {
+        // Create a new GameObject to store the original transform
+        if (_saveHeadTrans == null)
+        {
+            GameObject saveObject = new GameObject("SavedHeadPosition");
+            saveObject.AddComponent<Temp>();
+            _saveHeadTrans = saveObject.transform;
+        }
+
+        // Save the current position and rotation
+        _saveHeadTrans.position = _playerHead.transform.position;
+        _saveHeadTrans.rotation = _playerHead.transform.rotation;
+
+        doingPuzzle = true;
+        _playerMovement.enabled = false;
+        _playerInteraction.enabled = false;
+        _playerMinigame.enabled = true;
+
+        StartCoroutine(MoveCam(_playerHead.transform,_camTrans));
+    }
+    
+    private IEnumerator MoveCam(Transform start, Transform end)
+    {
+        while (start.position != end.transform.position 
+            && start.rotation != end.transform.rotation)
+        {
+            start.position = Vector3
+                .Lerp(start.position, end.position, _transSpeed * Time.deltaTime);
+            start.rotation = Quaternion
+                .Slerp(start.rotation, end.rotation, _transSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(start.position, end.position) < _snap)
+            {
+                start.SetPositionAndRotation(end.position, end.rotation);
+
+                _playerInteraction.enabled = true;
+                if (!doingPuzzle)
+                {
+                    Destroy(FindAnyObjectByType<Temp>());
+                    _playerMovement.enabled = true;
+                }
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     private void CheckDependentsRequirements()
@@ -133,10 +206,10 @@ public class Interactive : MonoBehaviour
         {
             if (!requirement._requirementsMet || 
                (!requirement.IsType(InteractiveData.Type.Indirect) && requirement._interactionCount == 0))
-               {
-                    _requirementsMet = false;
-                    return;
-               }
+            {
+                _requirementsMet = false;
+                return;
+            }
         }
 
         _requirementsMet = true;
@@ -165,12 +238,20 @@ public class Interactive : MonoBehaviour
     {
         Interactive requirement = _playerInventory.GetSelected();
 
-        _playerInventory.Remove(requirement);
+        if (requirement.useOnce)
+            _playerInventory.Remove(requirement);
 
         ++requirement._interactionCount;
 
         requirement.PlayAnimation(_interactionManager.interactAnimationName);
 
         CheckRequirements();
+    }
+
+    public virtual void DoSomething() { VerifyComplete?.Invoke(); }
+
+    protected virtual bool PuzzleFinished()
+    {
+        return true;
     }
 }
