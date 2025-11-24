@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
-  m_Name: Puzzle
+  m_Name: Pipe
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   startsOn: 1
-  inventoryName: 
-  inventoryIcon: {fileID: 0}
-  oneUse: 0
-  isPuzzle: 1
-  requirements: []
-  requirementsMessage: 
+  inventoryName: Pipe
+  inventoryIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  oneUse: 1
+  isPuzzle: 0
+  requirements:
+  - {fileID: 11400000, guid: 369c23ab9accca54a8fff91e056f49b3, type: 2}
+  requirementsMessage: Unscrew this.
   interactionMessages: []

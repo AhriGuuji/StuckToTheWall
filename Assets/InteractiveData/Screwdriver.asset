@@ -16,6 +16,9 @@ MonoBehaviour:
   startsOn: 1
   inventoryName: 
   inventoryIcon: {fileID: 0}
-  requirements: []
-  requirementsMessage: 
+  oneUse: 1
+  isPuzzle: 0
+  requirements:
+  - {fileID: 11400000, guid: a5968d921186e2d46ac753698a8a7848, type: 2}
+  requirementsMessage: I need to cut it.
   interactionMessages: []

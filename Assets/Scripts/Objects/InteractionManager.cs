@@ -31,10 +31,12 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private string lookInputName = "Look";
     [SerializeField] private string interactInputName = "Interact";
     [SerializeField] private string dropInputName = "Drop";
+    [SerializeField] private string escapeInputName = "Escape";
     public InputAction         InputLook => InputSystem.actions.FindAction(lookInputName);
     public InputAction         InputMovement => InputSystem.actions.FindAction(moveInputName);
     public InputAction         InputInteract => InputSystem.actions.FindAction(interactInputName);
     public InputAction         InputDrop => InputSystem.actions.FindAction(dropInputName);
+    public InputAction         InputEscape => InputSystem.actions.FindAction(escapeInputName);
 
     private List<Interactive>  _interactives;
 
@@ -81,21 +83,15 @@ public class InteractionManager : MonoBehaviour
     {
         foreach (Interactive interactive in _interactives)
         {
-            foreach (InteractiveData requirementData in interactive.interactiveData.requirements)
+            foreach (InteractiveData requirementData in interactive?.interactiveData?.requirements)
             {
                 Interactive requirement = FindInteractive(requirementData);
-                interactive.AddRequirement(requirement);
-                requirement.AddDependent(interactive);
+                interactive?.AddRequirement(requirement);
+                requirement?.AddDependent(interactive);
             }
         }
     }
-    /*public void CompletedPuzzle(Interactive interactive)
-    {
-        _lastCompletedPuzzle = playerInventory.transform.position;
-
-        interactive.PuzzleDone += OnPickUp;
-    }*/
-
+    
     public Interactive FindInteractive(InteractiveData interactiveData)
     {
         foreach (Interactive interactive in _interactives)

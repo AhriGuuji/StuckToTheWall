@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
-    [SerializeField] private InteractiveData _interactiveData;
+    [SerializeField] protected InteractiveData _interactiveData;
     [Range(0f, 1f)][SerializeField] private float _transSpeed;
     [SerializeField] private float _snap = 0.05f;
     [SerializeField] private Transform _camTrans;

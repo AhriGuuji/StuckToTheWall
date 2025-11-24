@@ -15,25 +15,25 @@ public class Player : MonoBehaviour
 
     [Header("Movement and Physics")]
     [SerializeField]
-    private float               _movVel;
+    private float               movVel;
     [SerializeField]
-    private float               _rotVel;
+    private float               rotVel;
     [SerializeField]
-    private float               _wallRotVel;
+    private float               wallRotVel;
     [SerializeField]
-    private float               _limYUp;
+    private float               limYUp;
     [SerializeField]
-    private float               _limYDown;
+    private float               limYDown;
     [SerializeField]
-    private float               _gravity = 9.81f;
+    private float               gravity = 9.81f;
 
     [Header("Raycast Settings")]
     [SerializeField]
-    private float               _raycastLenght = 1;
+    private float               raycastLenght = 1;
     [SerializeField]
-    private float               _raycastDownwardMultiplier = 2;
+    private float               raycastDownwardMultiplier = 2;
     [SerializeField]
-    private LayerMask           _mask;
+    private LayerMask           mask;
     private Vector3             _wallNormal;
 
     private void Awake()
@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     {
         _currentMove = _manager.InputMovement.ReadValue<Vector2>();
         _currentLook = _manager.InputLook.ReadValue<Vector2>();
+        
+        if(_manager.InputEscape.WasPressedThisFrame())
+            Application.Quit();
     }
 
     private void FixedUpdate()
@@ -59,15 +62,15 @@ public class Player : MonoBehaviour
     private void MoveForward()
     {
         Vector3 move = (transform.forward
-            * _currentMove.y * _movVel * Time.fixedDeltaTime) + (transform.right
-            * _currentMove.x * _movVel * Time.fixedDeltaTime);
+            * _currentMove.y * movVel * Time.fixedDeltaTime) + (transform.right
+            * _currentMove.x * movVel * Time.fixedDeltaTime);
 
         _rb.MovePosition(_rb.position + move);
     }
 
     private void LookX()
     {
-        float rotateAmount = _currentLook.x * _rotVel * Time.fixedDeltaTime;
+        float rotateAmount = _currentLook.x * rotVel * Time.fixedDeltaTime;
         Quaternion faceDir = Quaternion.Euler(0, rotateAmount, 0);
         _rb.MoveRotation(_rb.rotation * faceDir);
     }
@@ -79,9 +82,9 @@ public class Player : MonoBehaviour
         _camRotation.x -= _currentLook.y;
 
         if (_camRotation.x > 180f)
-            _camRotation.x = Mathf.Max(_limYUp, _camRotation.x);
+            _camRotation.x = Mathf.Max(limYUp, _camRotation.x);
         else
-            _camRotation.x = Mathf.Min(_limYDown, _camRotation.x);
+            _camRotation.x = Mathf.Min(limYDown, _camRotation.x);
 
         _cam.transform.localEulerAngles = _camRotation;
     }
@@ -90,16 +93,16 @@ public class Player : MonoBehaviour
     {
         RaycastHit _hit;
 
-        if (Physics.Raycast(transform.position, transform.forward + -transform.up * _raycastDownwardMultiplier,
-            out _hit, _raycastLenght, _mask))
+        if (Physics.Raycast(transform.position, transform.forward + -transform.up * raycastDownwardMultiplier,
+            out _hit, raycastLenght, mask))
         {
             _wallNormal = _hit.transform.gameObject.GetComponent<SetNormal>().Normal;
 
             StartCoroutine(SwitchWall());
 
-            _rb.AddForce(-transform.up * (_gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
+            _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
         }
-        else _rb.AddForce(-transform.up * (_gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
+        else _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
     }
 
     private IEnumerator SwitchWall()
@@ -107,7 +110,7 @@ public class Player : MonoBehaviour
         while (_wallNormal != transform.up.normalized)
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
-            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, _wallRotVel * Time.fixedDeltaTime);
+            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, wallRotVel * Time.fixedDeltaTime);
             transform.rotation = newRotation;
 
             yield return null;
@@ -117,6 +120,6 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, (transform.forward + -transform.up * _raycastDownwardMultiplier) * _raycastLenght);
+        Gizmos.DrawRay(transform.position, (transform.forward + -transform.up * raycastDownwardMultiplier) * raycastLenght);
     }
 }
