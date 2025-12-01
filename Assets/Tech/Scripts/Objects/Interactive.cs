@@ -9,6 +9,7 @@ public class Interactive : MonoBehaviour
     [Range(0f, 1f)][SerializeField] private float _transSpeed;
     [SerializeField] private float _snap = 0.05f;
     [SerializeField] private Transform _camTrans;
+    [field: SerializeField] public GameObject OutlineMesh { get; private set; }
 
     private InteractionManager  _interactionManager;
     private PlayerInventory     _playerInventory;
@@ -32,6 +33,8 @@ public class Interactive : MonoBehaviour
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite inventoryIcon => _interactiveData.inventoryIcon;
     public bool IsDone => PuzzleFinished();
+    [field: SerializeField]
+    public GameObject InstanceInScene { get; private set; }
     public event Action VerifyComplete;
     void Awake()
     {
@@ -50,6 +53,7 @@ public class Interactive : MonoBehaviour
         useOnce             = _interactiveData.oneUse;
         isPuzzle            = _interactiveData.isPuzzle;
         doingPuzzle         = false;
+        InstanceInScene     = gameObject;
 
         _interactionManager.RegisterInteractive(this);
     }
@@ -127,6 +131,12 @@ public class Interactive : MonoBehaviour
     {
         _playerInventory.Add(this);
         gameObject.SetActive(false);
+    }
+
+    public void Drop()
+    {
+        InstanceInScene.SetActive(true);
+        _playerInventory.Remove(this);
     }
 
     private void DoDirectInteraction()

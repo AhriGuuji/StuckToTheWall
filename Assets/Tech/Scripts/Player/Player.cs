@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private Camera              _cam;
     private Vector3             _camRotation;
     private InteractionManager  _manager;
-    public Camera               Cam => _cam;
 
     [Header("Movement and Physics")]
     [SerializeField]
@@ -71,8 +70,8 @@ public class Player : MonoBehaviour
     private void LookX()
     {
         float rotateAmount = _currentLook.x * rotVel * Time.fixedDeltaTime;
-        Quaternion faceDir = Quaternion.Euler(0, rotateAmount, 0);
-        _rb.MoveRotation(_rb.rotation * faceDir);
+        Vector3 faceDir = new(0, rotateAmount, 0);
+        transform.Rotate(faceDir);
     }
 
     private void LookY()
@@ -81,9 +80,8 @@ public class Player : MonoBehaviour
 
         _camRotation.x -= _currentLook.y;
 
-        if (_camRotation.x > 180f)
-            _camRotation.x = Mathf.Max(limYUp, _camRotation.x);
-        else
+        _camRotation.x = _camRotation.x > 180f ? 
+            _camRotation.x = Mathf.Max(limYUp, _camRotation.x) : 
             _camRotation.x = Mathf.Min(limYDown, _camRotation.x);
 
         _cam.transform.localEulerAngles = _camRotation;

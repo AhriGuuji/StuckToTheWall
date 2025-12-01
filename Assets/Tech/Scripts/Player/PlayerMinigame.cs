@@ -28,7 +28,7 @@ public class PlayerMinigame : MonoBehaviour
     private void Update()
     {
         _mousePos = Input.mousePosition;
-        _ray = _manager.player.Cam.ScreenPointToRay(_mousePos);
+        _ray = _manager.playerHead.ScreenPointToRay(_mousePos);
         _hit = Physics.Raycast(_ray, out RaycastHit hit, Mathf.Infinity, puzzleLayerMask,  QueryTriggerInteraction.Collide );
 
         Debug.DrawRay(_ray.origin, _ray.direction * 100, Color.red);

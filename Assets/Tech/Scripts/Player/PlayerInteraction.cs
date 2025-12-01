@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     private Transform   _cameraTransform;
     private Interactive _currentInteractive;
     private bool _refreshCurrentInteractive;
+    private bool _canDropHere;
     private InteractionManager _manager;
 
     void Start()
@@ -30,12 +30,20 @@ public class PlayerInteraction : MonoBehaviour
             CheckObjectForInteraction(hitInfo.collider);
         else if (_currentInteractive != null)
             ClearCurrentInteractive();
+        else if (_canDropHere)
+            _canDropHere = false;
     }
 
     private void CheckObjectForInteraction(Collider collider)
     {
         Interactive interactive = collider.GetComponent<Interactive>();
+        SetNormal wall = collider.GetComponent<SetNormal>();
 
+        if (wall != null)
+            _canDropHere = true;
+        else
+            _canDropHere = false;
+        
         if (interactive == null || !interactive.isOn)
         {
             if (_currentInteractive != null)
@@ -47,6 +55,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ClearCurrentInteractive()
     {
+        _currentInteractive?.OutlineMesh?.SetActive(false);
+        
         _currentInteractive = null;
         _uiManager.ShowDefaultCrosshair();
         _uiManager.HideInteractionPanel();
@@ -56,6 +66,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         _currentInteractive         = interactive;
         _refreshCurrentInteractive  = false;
+        
+        _currentInteractive?.OutlineMesh?.SetActive(true);
 
         string interactionMessage = interactive.GetInteractionMessage();
 
@@ -87,6 +99,10 @@ public class PlayerInteraction : MonoBehaviour
             if (_currentInteractive.doingPuzzle)
                 _currentInteractive.Leave();
         }
+        
+        if (_manager.InputDrop.WasPressedThisFrame() 
+            && _canDropHere && _manager.playerInventory.GetSelected())
+            _manager.playerInventory.GetSelected().Drop();
     }
 
     public void RefreshCurrentInteractive()
