@@ -7,7 +7,6 @@ namespace Objects
         [Header("Interactive Piece Settings")]
         [SerializeField] private float rotateAngle;
         [SerializeField] private float[] correctValue;
-        [SerializeField] private Puzzle puzzle;
         
         public override void DoSomething()
         {

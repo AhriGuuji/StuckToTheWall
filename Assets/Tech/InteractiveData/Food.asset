@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Alien Food
-  inventoryIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  inventoryIcon: {fileID: 21300000, guid: d3719099514114b4e9bb09e78077f3f0, type: 3}
   oneUse: 1
   isPuzzle: 0
   requirements: []

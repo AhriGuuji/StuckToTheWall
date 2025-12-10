@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   startsOn: 1
-  inventoryName: 
-  inventoryIcon: {fileID: 0}
+  inventoryName: Razor
+  inventoryIcon: {fileID: 21300000, guid: b7f8d6bfe98100943855a59aedb1d55c, type: 3}
   oneUse: 1
   isPuzzle: 0
   requirements: []

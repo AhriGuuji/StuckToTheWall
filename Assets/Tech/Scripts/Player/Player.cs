@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
         _currentMove = _manager.InputMovement.ReadValue<Vector2>();
         _currentLook = _manager.InputLook.ReadValue<Vector2>();
         
+        LookX();
+        LookY();
+        
         if(_manager.InputEscape.WasPressedThisFrame())
             Application.Quit();
     }
@@ -54,8 +57,6 @@ public class Player : MonoBehaviour
     {
         ApplyGravity();
         MoveForward();
-        LookX();
-        LookY();
     }
 
     private void MoveForward()
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
 
     private void LookX()
     {
-        float rotateAmount = _currentLook.x * rotVel * Time.fixedDeltaTime;
+        float rotateAmount = _currentLook.x * rotVel * Time.deltaTime;
         Vector3 faceDir = new(0, rotateAmount, 0);
         transform.Rotate(faceDir);
     }
@@ -78,7 +79,7 @@ public class Player : MonoBehaviour
     {
         _camRotation = _cam.transform.localEulerAngles;
 
-        _camRotation.x -= _currentLook.y;
+        _camRotation.x -= _currentLook.y * rotVel * Time.deltaTime;
 
         _camRotation.x = _camRotation.x > 180f ? 
             _camRotation.x = Mathf.Max(limYUp, _camRotation.x) : 
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
         while (_wallNormal != transform.up.normalized)
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
-            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, wallRotVel * Time.fixedDeltaTime);
+            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, wallRotVel * Time.deltaTime);
             transform.rotation = newRotation;
 
             yield return null;
