@@ -34,12 +34,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask           mask;
     private Vector3             _wallNormal;
+    private bool _rotating;
 
     private void Awake()
     {
         _manager = InteractionManager.instance;
         _cam = GetComponentInChildren<Camera>();
         _rb = GetComponent<Rigidbody>();
+        _rotating = false;
     }
     private void Update()
     {
@@ -92,28 +94,33 @@ public class Player : MonoBehaviour
     {
         RaycastHit _hit;
 
-        if (Physics.Raycast(transform.position, transform.forward + -transform.up * raycastDownwardMultiplier,
+        if (!_rotating && Physics.Raycast(transform.position, transform.forward + -transform.up * raycastDownwardMultiplier,
             out _hit, raycastLenght, mask))
         {
             _wallNormal = _hit.transform.gameObject.GetComponent<SetNormal>().Normal;
-
-            StartCoroutine(SwitchWall());
-
-            _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
+            
+            if (_wallNormal != transform.up.normalized)
+                StartCoroutine(SwitchWall());
         }
-        else _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
+        
+        _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
     }
 
     private IEnumerator SwitchWall()
     {
-        while (_wallNormal != transform.up.normalized)
+        _rotating = true;
+        Debug.Log("started");
+        while ((_wallNormal - transform.up.normalized).magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
-            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, wallRotVel * Time.deltaTime);
+            Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, wallRotVel);
             transform.rotation = newRotation;
-
             yield return null;
         }
+        
+        Debug.Log("done");
+        transform.rotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
+        _rotating = false;
     }
 
     private void OnDrawGizmos()
