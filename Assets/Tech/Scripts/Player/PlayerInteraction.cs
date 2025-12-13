@@ -55,7 +55,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ClearCurrentInteractive()
     {
-        _currentInteractive?.OutlineMesh?.SetActive(false);
+        if (_currentInteractive.OutlineMesh) _currentInteractive.OutlineMesh.SetActive(false);
         
         _currentInteractive = null;
         _uiManager.ShowDefaultCrosshair();
@@ -67,7 +67,7 @@ public class PlayerInteraction : MonoBehaviour
         _currentInteractive         = interactive;
         _refreshCurrentInteractive  = false;
         
-        _currentInteractive?.OutlineMesh?.SetActive(true);
+        if (_currentInteractive.OutlineMesh) _currentInteractive.OutlineMesh.SetActive(true);
 
         string interactionMessage = interactive.GetInteractionMessage();
 
