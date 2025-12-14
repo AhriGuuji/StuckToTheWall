@@ -16,7 +16,7 @@ namespace Tech.Scripts.Others
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {OpenExitMenu();}
         }
 

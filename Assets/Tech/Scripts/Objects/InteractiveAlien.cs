@@ -10,6 +10,7 @@ namespace Tech.Scripts.Objects
         [SerializeField] private Sprite happyFace;
         [SerializeField] private Image face;
         [SerializeField] private InteractiveData angryAlien;
+        [SerializeField] private InteractiveData happyAlien;
 
         public override void DoSomething()
         {
@@ -19,9 +20,12 @@ namespace Tech.Scripts.Objects
                 _interactiveData = angryAlien;
                 return;
             }
-            
-            if (_interactiveData.name == "AngryAlien") 
+
+            if (_interactiveData.name == "AngryAlien")
+            {
                 face.sprite = happyFace;
+                _interactiveData = happyAlien;
+            }
         }
     }
 }

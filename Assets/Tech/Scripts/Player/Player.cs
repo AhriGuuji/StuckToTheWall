@@ -52,9 +52,6 @@ namespace Tech.Scripts.Player
         
             LookX();
             LookY();
-        
-            if(_manager.InputEscape.WasPressedThisFrame())
-                Application.Quit();
         }
 
         private void FixedUpdate()
