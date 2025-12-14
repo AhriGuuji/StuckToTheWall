@@ -34,17 +34,26 @@ namespace Tech.Scripts.Objects
 
         protected override bool PuzzleFinished()
         {
+            bool isRight = true;
+            
             if (_strings.Count == solution.Count)
-                if (_strings[^1] == solution[^1])
+                for (int i = 0; i < solution.Count; i++)
                 {
-                    _interactiveData.type = InteractiveData.Type.Pickable;
-                    Debug.Log("All chemics are right!");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("Do it again!");
-                    _strings = new List<string>();
+                    if (_strings[^1] == solution[^1] && isRight)
+                    {
+                        _interactiveData.type = InteractiveData.Type.Pickable;
+                        Debug.Log("All chemics are right!");
+                        return true;
+                    }
+                    
+                    if (_strings[i] != solution[i]) 
+                        isRight = false;
+
+                    if (i == solution.Count - 1)
+                    {
+                        Debug.Log("Do it again!");
+                        _strings = new List<string>();
+                    }
                 }
             
             return false;

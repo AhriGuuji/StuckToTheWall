@@ -110,7 +110,7 @@ namespace Tech.Scripts.Player
         private IEnumerator SwitchWall()
         {
             _rotating = true;
-            Debug.Log("started");
+            
             while ((_wallNormal - transform.up.normalized).magnitude > 0.1f)
             {
                 Quaternion targetRotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
@@ -118,8 +118,7 @@ namespace Tech.Scripts.Player
                 transform.rotation = newRotation;
                 yield return null;
             }
-        
-            Debug.Log("done");
+            
             transform.rotation = Quaternion.FromToRotation(transform.up, _wallNormal) * transform.rotation;
             _rotating = false;
         }
