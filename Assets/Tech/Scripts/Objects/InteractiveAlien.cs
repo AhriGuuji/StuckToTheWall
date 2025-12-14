@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Objects
+namespace Tech.Scripts.Objects
 {
     public class InteractiveAlien : Interactive
     {

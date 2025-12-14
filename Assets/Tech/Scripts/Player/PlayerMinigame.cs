@@ -1,4 +1,4 @@
-using Objects;
+using Tech.Scripts.Objects;
 using UnityEngine;
 
 public class PlayerMinigame : MonoBehaviour

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class SetNormal : MonoBehaviour
+namespace Tech.Scripts.Map
 {
-    [SerializeField]
-    private Vector3 _normal;
+    public class SetNormal : MonoBehaviour
+    {
+        [SerializeField]
+        private Vector3 normal;
 
-    public Vector3 Normal => _normal.normalized;
+        public Vector3 Normal => normal.normalized;
+    }
 }

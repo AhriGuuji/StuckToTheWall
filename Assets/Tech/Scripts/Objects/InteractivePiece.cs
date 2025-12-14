@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Objects
+namespace Tech.Scripts.Objects
 {
     public class InteractivePiece : Interactive
     {
@@ -17,9 +17,9 @@ namespace Objects
 
         protected override bool PuzzleFinished()
         {
-            foreach (float a in correctValue)
+            foreach (float value in correctValue)
             {
-                if (Mathf.Abs(Mathf.DeltaAngle(transform.localEulerAngles.z, a)) < 0.1f)
+                if (Mathf.Abs(Mathf.DeltaAngle(transform.localEulerAngles.z, value)) < 0.1f)
                     return true;
             }
             return false;

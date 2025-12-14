@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tech.Scripts.Objects;
 using UnityEngine;
 
 public class Puzzle : MonoBehaviour

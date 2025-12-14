@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Tech.Scripts.Objects;
+using Tech.Scripts.Player;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
