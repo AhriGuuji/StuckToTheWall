@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   startsOn: 1
-  inventoryName: RedChemic
+  inventoryName: BlueChemic
   inventoryIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   oneUse: 0
   isPuzzle: 0

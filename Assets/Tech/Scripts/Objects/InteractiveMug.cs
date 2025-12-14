@@ -42,7 +42,6 @@ namespace Tech.Scripts.Objects
                     if (_strings[^1] == solution[^1] && isRight)
                     {
                         _interactiveData.type = InteractiveData.Type.Pickable;
-                        Debug.Log("All chemics are right!");
                         return true;
                     }
                     
@@ -51,7 +50,6 @@ namespace Tech.Scripts.Objects
 
                     if (i == solution.Count - 1)
                     {
-                        Debug.Log("Do it again!");
                         _strings = new List<string>();
                     }
                 }

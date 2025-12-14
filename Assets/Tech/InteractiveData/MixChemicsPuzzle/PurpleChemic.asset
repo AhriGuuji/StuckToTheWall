@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fea1e40f7ba453c9951c22992e09c2c, type: 3}
-  m_Name: GreenChemic
+  m_Name: PurpleChemic
   m_EditorClassIdentifier: 
   type: 0
   startsOn: 1
-  inventoryName: GreenChemic
+  inventoryName: PurpleChemic
   inventoryIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   oneUse: 0
   isPuzzle: 0
   requirements: []
   requirementsMessage: 
   interactionMessages: []
-  color: Green
+  color: Purple

@@ -104,7 +104,7 @@ namespace Tech.Scripts.Player
                     StartCoroutine(SwitchWall());
             }
         
-            _rb.AddForce(-transform.up * (gravity * Time.fixedDeltaTime), ForceMode.Acceleration);
+            _rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
         }
 
         private IEnumerator SwitchWall()
