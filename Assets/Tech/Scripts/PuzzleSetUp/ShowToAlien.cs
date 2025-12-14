@@ -19,10 +19,6 @@ namespace Tech.Scripts.PuzzleSetUp
 
         private void OnTriggerStay(Collider other)
         {
-            
-            
-            Debug.Log(_isHappy);
-            
             if(alienCurrentState.interactiveData.name == "HappyAlien")
                 if (other.TryGetComponent(out PlayerInventory playerInventory))
                 {
@@ -30,7 +26,6 @@ namespace Tech.Scripts.PuzzleSetUp
                     {
                         if (!_isHappy && solution.Contains(chemic.color))
                         {
-                            Debug.Log(chemic.color);
                             alienAnimator.SetBool("Dance",true);
                             _isHappy = true;
                         }
@@ -38,7 +33,6 @@ namespace Tech.Scripts.PuzzleSetUp
 
                     if (_isHappy && playerInventory.GetSelected().interactiveData is not InteractiveChemicData)
                     {
-                        Debug.Log(playerInventory.GetSelected().interactiveData);
                         alienAnimator.SetBool("Dance", false);
                         _isHappy = false;
                     }
