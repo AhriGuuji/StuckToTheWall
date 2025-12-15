@@ -14,7 +14,7 @@ namespace Tech.Scripts.Objects
         [SerializeField] private Transform _camTrans;
         [field: SerializeField] public GameObject OutlineMesh { get; private set; }
 
-        private InteractionManager  _interactionManager;
+        protected InteractionManager  _interactionManager;
         protected PlayerInventory     _playerInventory;
         protected PlayerInteraction   _playerInteraction;
         private Player.Player              _playerMovement;
@@ -23,7 +23,7 @@ namespace Tech.Scripts.Objects
         private List<Interactive>   _requirements;
         private List<Interactive>   _dependents;
         private Animator            _animator;
-        private bool                _requirementsMet;
+        protected bool              _requirementsMet;
         private int                 _interactionCount;
         private Transform           _saveHeadTrans;
         private bool                _puzzleCompleted;
@@ -39,7 +39,7 @@ namespace Tech.Scripts.Objects
         [field: SerializeField]
         public GameObject InstanceInScene { get; private set; }
         public event Action VerifyComplete;
-        void Awake()
+        protected void Awake()
         {
             _interactionManager = InteractionManager.instance;
             _playerInventory    = _interactionManager.playerInventory;
@@ -58,7 +58,7 @@ namespace Tech.Scripts.Objects
             doingPuzzle         = false;
             InstanceInScene     = gameObject;
 
-            _interactionManager.RegisterInteractive(this);
+            _interactionManager?.RegisterInteractive(this);
         }
 
         public void AddRequirement(Interactive requirement)

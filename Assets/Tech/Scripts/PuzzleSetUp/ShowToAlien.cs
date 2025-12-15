@@ -19,7 +19,7 @@ namespace Tech.Scripts.PuzzleSetUp
 
         private void OnTriggerStay(Collider other)
         {
-            if(alienCurrentState.interactiveData.name == "HappyAlien")
+            if(alienCurrentState?.interactiveData?.name == "HappyAlien")
                 if (other.TryGetComponent(out PlayerInventory playerInventory))
                 {
                     if (playerInventory?.GetSelected()?.interactiveData is InteractiveChemicData chemic)

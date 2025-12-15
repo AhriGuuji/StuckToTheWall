@@ -13,7 +13,6 @@ public class Puzzle : MonoBehaviour
 
     private void OnPuzzlePieceChanged()
     {
-        Debug.Log("Puzzle is complete? " + PuzzleCompleted());
         if (PuzzleCompleted())
         {
             DoPuzzleReward();

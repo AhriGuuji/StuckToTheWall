@@ -16,7 +16,7 @@ MonoBehaviour:
   startsOn: 1
   inventoryName: 
   inventoryIcon: {fileID: 0}
-  oneUse: 0
+  oneUse: 1
   isPuzzle: 0
   requirements:
   - {fileID: 11400000, guid: 582ace958d4236849925b3f06c8bfe45, type: 2}
