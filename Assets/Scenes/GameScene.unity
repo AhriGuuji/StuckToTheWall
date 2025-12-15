@@ -8120,7 +8120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5804430265393947384, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_LocalScale.x
@@ -9351,6 +9351,10 @@ PrefabInstance:
     - target: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_Name
       value: Screwdriver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5804430265393947384, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_LocalScale.x
