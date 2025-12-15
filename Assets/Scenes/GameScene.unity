@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Screwdriver
+  m_text: Wrench
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5649,6 +5649,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351478962}
   m_Mesh: {fileID: -5840284170326959453, guid: fa737b8d3c81efd409ec9058722be317, type: 3}
+--- !u!1 &1364481450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
+  m_PrefabInstance: {fileID: 2141818875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1377027649
 GameObject:
   m_ObjectHideFlags: 0
@@ -9350,11 +9355,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_Name
-      value: Screwdriver
+      value: Wrench
       objectReference: {fileID: 0}
     - target: {fileID: 4787161245799461966, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5804430265393947384, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
       propertyPath: m_LocalScale.x
@@ -9412,6 +9417,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7935824331578283020, guid: c5139c7c17e02da478af3f474792ec27, type: 3}
+      propertyPath: <InstanceInScene>k__BackingField
+      value: 
+      objectReference: {fileID: 1364481450}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
