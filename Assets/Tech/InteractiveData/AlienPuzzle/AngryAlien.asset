@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 582ace958d4236849925b3f06c8bfe45, type: 2}
   requirementsMessage: It needs to eat!
   interactionMessages:
-  - Feed
+  - Eat that thing up!

@@ -20,4 +20,5 @@ MonoBehaviour:
   isPuzzle: 0
   requirements: []
   requirementsMessage: 
-  interactionMessages: []
+  interactionMessages:
+  - Feed

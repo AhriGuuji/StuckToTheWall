@@ -22,6 +22,8 @@ namespace Tech.Scripts.Player
         [SerializeField]
         private float               wallRotVel;
         [SerializeField]
+        private Transform           playerHead;
+        [SerializeField]
         private float               limYUp;
         [SerializeField]
         private float               limYDown;
@@ -51,7 +53,7 @@ namespace Tech.Scripts.Player
             _currentLook = _manager.InputLook.ReadValue<Vector2>();
         
             LookX();
-            LookY();
+            //LookY();
         }
 
         private void FixedUpdate()
@@ -62,8 +64,8 @@ namespace Tech.Scripts.Player
 
         private void MoveForward()
         {
-            Vector3 move = (transform.forward * (_currentMove.y * movVel * Time.fixedDeltaTime)) 
-                           + (transform.right * (_currentMove.x * movVel * Time.fixedDeltaTime));
+            Vector3 move = (playerHead.forward * (_currentMove.y * movVel * Time.fixedDeltaTime)) 
+                           + (playerHead.right * (_currentMove.x * movVel * Time.fixedDeltaTime));
 
             _rb.MovePosition(_rb.position + move);
         }

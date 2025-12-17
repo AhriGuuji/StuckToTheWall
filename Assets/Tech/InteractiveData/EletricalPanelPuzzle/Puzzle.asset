@@ -20,4 +20,5 @@ MonoBehaviour:
   isPuzzle: 1
   requirements: []
   requirementsMessage: 
-  interactionMessages: []
+  interactionMessages:
+  - Come near!

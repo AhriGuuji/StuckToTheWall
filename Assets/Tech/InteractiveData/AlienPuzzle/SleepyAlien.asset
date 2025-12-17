@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d691a2db568af9b4e8301dc670e01906, type: 2}
   requirementsMessage: I'll need something heavy.
   interactionMessages:
-  - Bonk
+  - WAKE UP
