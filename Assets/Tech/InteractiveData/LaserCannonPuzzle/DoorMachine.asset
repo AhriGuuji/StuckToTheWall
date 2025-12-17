@@ -22,4 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f89c0274f3793940a462ade15ae1a17, type: 2}
   requirementsMessage: Need to wrench this.
   interactionMessages:
-  - Wrench this.
+  - Open
+  - Close
