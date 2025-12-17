@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
-  m_Name: AngryAlien
+  m_Name: DoorMachine
   m_EditorClassIdentifier: 
   type: 2
   startsOn: 1
   inventoryName: 
   inventoryIcon: {fileID: 0}
-  oneUse: 1
+  oneUse: 0
   isPuzzle: 0
   requirements:
-  - {fileID: 11400000, guid: 582ace958d4236849925b3f06c8bfe45, type: 2}
-  requirementsMessage: It needs to eat!
+  - {fileID: 11400000, guid: 4f89c0274f3793940a462ade15ae1a17, type: 2}
+  requirementsMessage: Need to wrench this.
   interactionMessages:
-  - Feed
+  - Wrench this.

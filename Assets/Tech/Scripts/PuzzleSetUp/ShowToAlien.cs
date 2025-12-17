@@ -6,10 +6,10 @@ namespace Tech.Scripts.PuzzleSetUp
 {
     public class ShowToAlien : MonoBehaviour
     {
-        [SerializeField] private List<string> solution;
         [SerializeField] private Animator alienAnimator;
         [SerializeField] private InteractiveData alienState;
         [SerializeField] private Interactive alienCurrentState;
+        [SerializeField] private InteractiveMug mug;
         private bool _isHappy;
 
         private void Start()
@@ -24,7 +24,9 @@ namespace Tech.Scripts.PuzzleSetUp
                 {
                     if (playerInventory?.GetSelected()?.interactiveData is InteractiveChemicData chemic)
                     {
-                        if (!_isHappy && solution.Contains(chemic.color))
+                        if (!_isHappy 
+                            && mug.Solution.Contains(chemic.color) 
+                            && !mug.ActualLiquids.Contains(chemic.name))
                         {
                             alienAnimator.SetBool("Dance",true);
                             _isHappy = true;

@@ -6,10 +6,10 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DoorController
+  m_Name: DoorMachineController
   m_Controller: {fileID: 9100000, guid: 17161c9324421364e869a566be69b79a, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 20881055527756541a8d20c14c8c9e1e, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 0a39f8a31a86a0d4f8f659d95e660016, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 591cc0b5983c695469e7dabacdcfe9e7, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 0a39f8a31a86a0d4f8f659d95e660016, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 20881055527756541a8d20c14c8c9e1e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 14498da8de56b6c4d883f7a157ebcf26, type: 2}

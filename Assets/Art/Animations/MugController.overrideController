@@ -8,4 +8,8 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: MugController
   m_Controller: {fileID: 9100000, guid: 17161c9324421364e869a566be69b79a, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0a39f8a31a86a0d4f8f659d95e660016, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bf3e1ea9f6d9d0f4293b33b2c40803f5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20881055527756541a8d20c14c8c9e1e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3af0850c1b9511842a8a26365349ca43, type: 2}

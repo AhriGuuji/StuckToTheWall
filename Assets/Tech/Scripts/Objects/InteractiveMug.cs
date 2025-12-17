@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,24 +5,27 @@ namespace Tech.Scripts.Objects
 {
     public class InteractiveMug : Interactive
     {
-        [SerializeField] private List<string> solution = new ();
-        private List<string> _strings = new ();
+        [SerializeField] private List<string> solution;
+        private List<string> _strings;
+        public List<string> ActualLiquids => _strings;
+        public List<string> Solution => solution;
 
         private void Start()
         {
             _interactiveData.type = InteractiveData.Type.InteractMulti;
+            _strings = new List<string>();
         }
 
         public override void DoSomething()
         {
-            if (_playerInventory.GetSelected().interactiveData is InteractiveChemicData chemic)
-            {
-                _strings.Add(chemic.color);
-                
-                base.DoSomething();
+            if (_playerInventory?.GetSelected()?.interactiveData is not InteractiveChemicData chemic) 
+                return;
+            
+            _strings.Add(chemic.color);
 
-                VerifyComplete += OnVerifyComplete;
-            }
+            base.DoSomething();
+
+            VerifyComplete += OnVerifyComplete;
         }
 
         private void OnVerifyComplete()
@@ -34,27 +36,25 @@ namespace Tech.Scripts.Objects
 
         protected override bool PuzzleFinished()
         {
-            bool isRight = true;
-            
-            if (_strings.Count == solution.Count)
-                for (int i = 0; i < solution.Count; i++)
-                {
-                    if (_strings[^1] == solution[^1] && isRight)
-                    {
-                        _interactiveData.type = InteractiveData.Type.Pickable;
-                        return true;
-                    }
-                    
-                    if (_strings[i] != solution[i]) 
-                        isRight = false;
+            if (_strings.Count != solution.Count)
+                return false;
 
-                    if (i == solution.Count - 1)
-                    {
-                        _strings = new List<string>();
-                    }
+            for (int i = 0; i < solution.Count; i++)
+            {
+                if (_strings[i] != solution[i])
+                {
+                    _strings = new List<string>();
+                    return false;
                 }
+            }
             
-            return false;
+            return true;
+        }
+
+        protected override void PlayAnimation(string animation)
+        {
+            if(_playerInventory?.GetSelected()?.interactiveData is InteractiveChemicData)
+                base.PlayAnimation(animation);
         }
     }
 }

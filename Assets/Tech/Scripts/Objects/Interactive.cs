@@ -122,7 +122,8 @@ namespace Tech.Scripts.Objects
         {
             if (direct && IsType(InteractiveData.Type.Indirect))
                 return;
-            else if (IsType(InteractiveData.Type.Pickable) && !_playerInventory.IsFull())
+            
+            if (IsType(InteractiveData.Type.Pickable) && !_playerInventory.IsFull())
                 PickUpInteractive();
             else if (IsType(InteractiveData.Type.InteractOnce) || IsType(InteractiveData.Type.InteractMulti))
                 DoDirectInteraction();
@@ -238,7 +239,7 @@ namespace Tech.Scripts.Objects
                     dependent.InteractSelf(false);
         }
  
-        private void PlayAnimation(string animation)
+        protected virtual void PlayAnimation(string animation)
         {
             if (_animator != null)
             {
