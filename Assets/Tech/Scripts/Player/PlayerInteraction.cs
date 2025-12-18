@@ -1,5 +1,6 @@
 using Tech.Scripts.Map;
 using Tech.Scripts.Objects;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Tech.Scripts.Player
@@ -17,7 +18,7 @@ namespace Tech.Scripts.Player
 
         void Start()
         {
-            _cameraTransform            = GetComponentInChildren<Camera>().transform;
+            _cameraTransform            = GetComponentInChildren<CinemachineCamera>().transform;
             _currentInteractive         = null;
             _refreshCurrentInteractive  = false;
             _manager                    = InteractionManager.instance;
