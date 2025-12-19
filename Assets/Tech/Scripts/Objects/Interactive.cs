@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tech.Scripts.Player;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Tech.Scripts.Objects
@@ -19,7 +20,7 @@ namespace Tech.Scripts.Objects
         protected PlayerInteraction   _playerInteraction;
         private Player.Player              _playerMovement;
         private PlayerMinigame      _playerMinigame;
-        private Camera              _playerHead;
+        private CinemachineCamera              _playerHead;
         private List<Interactive>   _requirements;
         private List<Interactive>   _dependents;
         private Animator            _animator;
@@ -27,6 +28,7 @@ namespace Tech.Scripts.Objects
         private int                 _interactionCount;
         private Transform           _saveHeadTrans;
         private bool                _puzzleCompleted;
+        private CinemachinePanTilt _panTilt;
 
         public bool             isOn;
         public bool             useOnce;
@@ -59,6 +61,8 @@ namespace Tech.Scripts.Objects
             InstanceInScene     = gameObject;
 
             _interactionManager?.RegisterInteractive(this);
+
+            _panTilt = _playerHead.GetComponent<CinemachinePanTilt>();
         }
 
         public void AddRequirement(Interactive requirement)
@@ -175,6 +179,7 @@ namespace Tech.Scripts.Objects
             _saveHeadTrans.rotation = _playerHead.transform.rotation;
 
             doingPuzzle = true;
+            _panTilt.enabled = false;
             _playerMovement.enabled = false;
             _playerInteraction.enabled = false;
             _playerMinigame.enabled = true;
@@ -201,6 +206,7 @@ namespace Tech.Scripts.Objects
                     {
                         Destroy(FindAnyObjectByType<Temp>());
                         _playerMovement.enabled = true;
+                        _panTilt.enabled = true;
                     }
                     yield break;
                 }

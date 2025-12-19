@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Tech.Scripts.Objects;
 using Tech.Scripts.Player;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private PlayerInteraction  _playerInteraction;
     [SerializeField] private Player             _playerMovement;
     [SerializeField] private PlayerMinigame     _playerMinigame;
-    [SerializeField] private Camera             _playerHead;
+    [SerializeField] private CinemachineCamera  _playerHead;
     [SerializeField] private string             _interactPrefix;
     [SerializeField] private string             _pickPrefix;
     [SerializeField] private string             _awakeAnimationName;
@@ -46,7 +47,7 @@ public class InteractionManager : MonoBehaviour
     public PlayerInteraction    playerInteraction       => _playerInteraction;
     public Player               player                  => _playerMovement;
     public PlayerMinigame       playerMinigame          => _playerMinigame;
-    public Camera               playerHead              => _playerHead;
+    public CinemachineCamera               playerHead              => _playerHead;
     public string               awakeAnimationName      => _awakeAnimationName;
     public string               interactAnimationName   => _interactAnimationName;
 
