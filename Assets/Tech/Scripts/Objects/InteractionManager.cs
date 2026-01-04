@@ -54,6 +54,8 @@ public class InteractionManager : MonoBehaviour
     //Changed By Me
     private List<Interactive> _completedPuzzles;
     private Vector3 _lastCompletedPuzzle;
+    //ConnectionPuzzle
+    public InteractiveConnector lastConnector;
 
     void Awake()
     {

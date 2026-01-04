@@ -13,6 +13,7 @@ public class Puzzle : MonoBehaviour
 
     private void OnPuzzlePieceChanged()
     {
+        Debug.Log("oooi");
         if (PuzzleCompleted())
         {
             DoPuzzleReward();
@@ -27,7 +28,6 @@ public class Puzzle : MonoBehaviour
 
     private void Start()
     {
-        // Subscribe to each puzzle piece's completion events
         foreach (Interactive piece in puzzlePieces)
         {
             piece.VerifyComplete += OnPuzzlePieceChanged;

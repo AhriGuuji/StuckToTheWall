@@ -38,7 +38,7 @@ public class PlayerMinigame : MonoBehaviour
         if (_hit)
             if (_manager.InputInteract.WasPressedThisFrame())
             {
-                hit.transform.GetComponent<InteractivePiece>().DoSomething();
+                hit.transform.GetComponent<Interactive>().DoSomething();
             }
     }
 }
