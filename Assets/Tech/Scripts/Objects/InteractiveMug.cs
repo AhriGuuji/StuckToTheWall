@@ -18,14 +18,28 @@ namespace Tech.Scripts.Objects
 
         public override void DoSomething()
         {
-            if (_playerInventory?.GetSelected()?.interactiveData is not InteractiveChemicData chemic) 
+            if (_playerInventory?.GetSelected()?.interactiveData is not InteractiveChemicData chemic)
+            {
                 return;
-            
-            _strings.Add(chemic.color);
+            }
+
+            if(_strings.Count <= solution.Count)
+                _strings.Add(chemic.color);
+
+            foreach (string s in _strings)
+                print(s);
 
             base.DoSomething();
 
             VerifyComplete += OnVerifyComplete;
+        }
+
+        public override void Drop()
+        {
+            base.Drop();
+
+            if(_strings.Count == 0)
+                _interactiveData.type = InteractiveData.Type.InteractMulti;
         }
 
         private void OnVerifyComplete()
@@ -36,8 +50,10 @@ namespace Tech.Scripts.Objects
 
         protected override bool PuzzleFinished()
         {
-            if (_strings.Count != solution.Count)
+            if (_strings.Count < solution.Count)
                 return false;
+
+            _interactiveData.type = InteractiveData.Type.Pickable;
 
             for (int i = 0; i < solution.Count; i++)
             {
@@ -55,6 +71,11 @@ namespace Tech.Scripts.Objects
         {
             if(_playerInventory?.GetSelected()?.interactiveData is InteractiveChemicData)
                 base.PlayAnimation(animation);
+        }
+
+        public void Clear()
+        {
+            _strings = new List<string>();
         }
     }
 }

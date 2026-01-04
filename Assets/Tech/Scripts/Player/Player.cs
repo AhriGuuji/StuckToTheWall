@@ -58,6 +58,7 @@ namespace Tech.Scripts.Player
 
         private void FixedUpdate()
         {
+            Debug.Log("Hi");
             ApplyGravity();
             MoveForward();
         }

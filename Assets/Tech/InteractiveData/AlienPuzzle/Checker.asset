@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
-  m_Name: Pipe
+  m_Name: Checker
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   startsOn: 1
-  inventoryName: Pipe
-  inventoryIcon: {fileID: 21300000, guid: 48217ca09c6570d43b728134d8684d3d, type: 3}
-  oneUse: 1
+  inventoryName: 
+  inventoryIcon: {fileID: 0}
+  oneUse: 0
   isPuzzle: 0
   requirements:
-  - {fileID: 11400000, guid: 4f89c0274f3793940a462ade15ae1a17, type: 2}
-  requirementsMessage: Wrench this.
+  - {fileID: 11400000, guid: d40d823fe9cf651479f1c96dbd98b009, type: 2}
+  requirementsMessage: 
   interactionMessages:
-  - Bonk
+  - Put the mug here to check its order

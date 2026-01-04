@@ -73,7 +73,7 @@ public class InteractionManager : MonoBehaviour
 
     public void RegisterInteractive(Interactive interactive)
     {
-        _interactives.Add(interactive);
+        _interactives?.Add(interactive);
     }
 
     void Start()

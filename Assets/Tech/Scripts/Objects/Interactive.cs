@@ -23,7 +23,7 @@ namespace Tech.Scripts.Objects
         private CinemachineCamera              _playerHead;
         private List<Interactive>   _requirements;
         private List<Interactive>   _dependents;
-        private Animator            _animator;
+        protected Animator            _animator;
         protected bool              _requirementsMet;
         private int                 _interactionCount;
         private Transform           _saveHeadTrans;
@@ -141,7 +141,7 @@ namespace Tech.Scripts.Objects
             gameObject.SetActive(false);
         }
 
-        public void Drop()
+        public virtual void Drop()
         {
             InstanceInScene.SetActive(true);
             _playerInventory.Remove(this);
