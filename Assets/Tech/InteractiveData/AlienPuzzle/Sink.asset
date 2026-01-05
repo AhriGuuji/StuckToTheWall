@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
-  m_Name: PlaceGeode
+  m_Name: Sink
   m_EditorClassIdentifier: 
   type: 2
   startsOn: 1
@@ -19,6 +19,6 @@ MonoBehaviour:
   oneUse: 0
   isPuzzle: 0
   requirements: []
-  requirementsMessage: Perfect for a rock
+  requirementsMessage: 
   interactionMessages:
-  - Place rock here
+  - Dump here

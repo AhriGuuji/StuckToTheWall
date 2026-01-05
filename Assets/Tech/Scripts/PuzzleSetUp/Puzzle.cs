@@ -7,7 +7,7 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     public bool IsComplete => PuzzleCompleted();
-    [SerializeField] private List<Interactive> puzzlePieces;
+    [SerializeField] protected List<Interactive> puzzlePieces;
     private readonly Func<IEnumerable<Interactive>, bool> _puzzleCompleted = pieces =>
         pieces.All(puzzlePiece => puzzlePiece.IsDone);
 
