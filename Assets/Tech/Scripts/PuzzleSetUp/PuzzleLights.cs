@@ -6,10 +6,10 @@ namespace DefaultNamespace
     {
         [Header("This Puzzle Settings")]
         [SerializeField] private GameObject roomLights;
-        [SerializeField] private Light alarmLight;
+        [SerializeField] private GameObject alarmLight;
         protected override void DoPuzzleReward()
         {
-            alarmLight.enabled = false;
+            alarmLight.SetActive(false);
             roomLights.SetActive(true);
         }
     }

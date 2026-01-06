@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -13,6 +14,7 @@ namespace DefaultNamespace
             line.enabled = true;
             line.SetPosition(0,startPoint.position);
             line.SetPosition(1,endPoint.position);
+            SoundManager.PlaySound(SoundType.LASER);
         }
     }
 }

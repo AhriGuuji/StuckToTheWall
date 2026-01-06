@@ -11,6 +11,10 @@ namespace SmallHedge.SoundManager
         BONK,
         CLICKS,
         DOOR,
-        BOTTLE
+        BOTTLE,
+        ROCK,
+        LASER,
+        FREEZE,
+        ALARM
     }
 }
