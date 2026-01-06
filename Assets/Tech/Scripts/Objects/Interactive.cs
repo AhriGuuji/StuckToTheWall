@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SmallHedge.SoundManager;
 using Tech.Scripts.Player;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -126,7 +127,8 @@ namespace Tech.Scripts.Objects
         {
             if (direct && IsType(InteractiveData.Type.Indirect))
                 return;
-            
+
+            SoundManager.PlaySound(SoundType.CLICKS);
             if (IsType(InteractiveData.Type.Pickable) && !_playerInventory.IsFull())
                 PickUpInteractive();
             else if (IsType(InteractiveData.Type.InteractOnce) || IsType(InteractiveData.Type.InteractMulti))
