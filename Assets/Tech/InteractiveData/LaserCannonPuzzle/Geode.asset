@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Geode
-  inventoryIcon: {fileID: 21300000, guid: 4d51faadbbc017046a2eb907073b9613, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: 201e29a6d1b8042f8b908cd7b7f8202c, type: 3}
   oneUse: 1
   isPuzzle: 0
   requirements: []

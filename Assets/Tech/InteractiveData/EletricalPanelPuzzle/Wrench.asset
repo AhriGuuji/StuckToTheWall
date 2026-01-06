@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Wrench
-  inventoryIcon: {fileID: 21300000, guid: 9dc9eafba7ce044eb87665166cfc7b3a, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: 8581e8233373a4b4c969523a6edf3dc4, type: 3}
   oneUse: 1
   isPuzzle: 0
   requirements: []

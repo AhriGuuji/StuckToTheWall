@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Pipe
-  inventoryIcon: {fileID: 21300000, guid: 48217ca09c6570d43b728134d8684d3d, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: 4333a27491a224e05aa7065314b72194, type: 3}
   oneUse: 1
   isPuzzle: 0
   requirements:

@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: GreenChemic
-  inventoryIcon: {fileID: 21300000, guid: 3fa3366c5c6e847fba2e30917b19c6e3, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: 4e5b05a7e0cc34bf98f9070292a3d47f, type: 3}
   oneUse: 0
   isPuzzle: 0
   requirements: []

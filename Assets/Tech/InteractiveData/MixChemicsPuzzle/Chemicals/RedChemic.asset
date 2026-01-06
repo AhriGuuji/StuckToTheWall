@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: RedChemic
-  inventoryIcon: {fileID: 21300000, guid: b6465981ef0b74772822ec0ff934eb17, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: c61b4f3e0a50d4a7383f6391d83491db, type: 3}
   oneUse: 0
   isPuzzle: 0
   requirements: []

@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Crystal
-  inventoryIcon: {fileID: 0}
+  inventoryIcon: {fileID: 21300000, guid: 927644de52e684181a029c74f8acbe23, type: 3}
   oneUse: 0
   isPuzzle: 0
   requirements: []

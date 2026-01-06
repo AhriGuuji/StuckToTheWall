@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
   m_Name: Mug
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   startsOn: 1
   inventoryName: Mug
-  inventoryIcon: {fileID: 21300000, guid: 22c14571065f6274e9e4712b5ca1cdcd, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: de7928e8f54b74eb687d71addf0f59d2, type: 3}
   oneUse: 0
   isPuzzle: 0
   requirements: []
