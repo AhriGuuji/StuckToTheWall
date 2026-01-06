@@ -12170,7 +12170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17220bf527780944ea0afdf610cb2ec6, type: 2}
+  - {fileID: 2100000, guid: e63000247d3324cfe9c3bd4658a0590b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23210,6 +23210,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6003182002033583127, guid: d31405c1b57a9e147b622641b204dbf9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d68e7996a03ec4cfc81ffb8474164ab1, type: 2}
     - target: {fileID: 6534484965871286890, guid: d31405c1b57a9e147b622641b204dbf9, type: 3}
       propertyPath: <OutlineMesh>k__BackingField
       value: 
