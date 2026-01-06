@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c95c2d66e94f0554ebc2f6075439171c
+guid: d145b0ab827354e439e8ccb3185f8216
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Maya_Lambert6
-    second: {fileID: 2100000, guid: 9a47e6e306ee93e469e207f8e272f6ee, type: 2}
+      name: LabCoat
+    second: {fileID: 2100000, guid: 1a8c3d62f1bca234bb440fba7c9bee52, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
