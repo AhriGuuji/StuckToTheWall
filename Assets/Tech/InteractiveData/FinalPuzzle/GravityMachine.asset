@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da79969b3ffb2c4f8817f9c07bf0d0c, type: 3}
   m_Name: GravityMachine
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   startsOn: 1
   inventoryName: 
   inventoryIcon: {fileID: 0}
-  oneUse: 1
+  oneUse: 0
   isPuzzle: 0
   requirements:
   - {fileID: 11400000, guid: d9e7a6e8fe7e26f45a00ce7becf00f06, type: 2}
   - {fileID: 11400000, guid: 64d6923756616514ebbcecb5578a1096, type: 2}
-  requirementsMessage: Crystal and Frozen Chemical Required.
+  requirementsMessage: Crystal and Chemical Required.
   interactionMessages:
   - Activate
