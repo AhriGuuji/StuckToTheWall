@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class PuzzleCrystal : Puzzle
+    public class PuzzleFreeze : Puzzle
     {
         [Header("This Puzzle Settings")]
         [SerializeField] private GameObject toSetActive;
@@ -17,7 +17,7 @@ namespace DefaultNamespace
 
         protected override void DoPuzzleReward()
         {
-            SoundManager.PlaySound(SoundType.ROCK);
+            SoundManager.PlaySound(SoundType.FREEZE);
             foreach(Interactive piece in puzzlePieces)
                 piece.gameObject.SetActive(false);
             toSetUnactive.SetActive(false);

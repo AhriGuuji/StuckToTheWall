@@ -43,4 +43,6 @@ public class Puzzle : MonoBehaviour
     }
 
     protected virtual void DoPuzzleReward(){}
+
+    public virtual void CHEAT() {}
 }

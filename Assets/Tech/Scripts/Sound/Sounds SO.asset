@@ -48,3 +48,23 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 51a4ad7ab02f4d740ad359600d807eee, type: 3}
+  - name: ROCK
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 2b64b562d073ccf44b26e06a33775ed2, type: 3}
+  - name: LASER
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: eb84e021ee4818b4e83969d1be168540, type: 3}
+  - name: FREEZE
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: ebc71984982f00747bf6c8c01ed8c809, type: 3}
+  - name: ALARM
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 1839b73ddd3b0b94eb652eb2b6a0841f, type: 3}

@@ -9,6 +9,12 @@ namespace DefaultNamespace
         [SerializeField] private Transform startPoint;
         [SerializeField] private Transform endPoint;
         [SerializeField] private LineRenderer line;
+
+        public override void CHEAT()
+        {
+            DoPuzzleReward();
+        }
+
         protected override void DoPuzzleReward()
         {
             line.enabled = true;

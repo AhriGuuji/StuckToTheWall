@@ -12,5 +12,10 @@ namespace DefaultNamespace
             alarmLight.SetActive(false);
             roomLights.SetActive(true);
         }
+
+        public override void CHEAT()
+        {
+            DoPuzzleReward();
+        }
     }
 }
