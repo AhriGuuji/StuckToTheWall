@@ -1,4 +1,5 @@
 using System.Collections;
+using SmallHedge.SoundManager;
 using Tech.Scripts.Map;
 using UnityEngine;
 
@@ -39,6 +40,7 @@ namespace Tech.Scripts.Player
         private LayerMask           mask;
         private Vector3             _wallNormal;
         private bool _rotating;
+        private bool _walking;
 
         private void Awake()
         {
@@ -68,6 +70,14 @@ namespace Tech.Scripts.Player
             Vector3 move = (playerHead.forward * (_currentMove.y * movVel * Time.fixedDeltaTime)) 
                            + (playerHead.right * (_currentMove.x * movVel * Time.fixedDeltaTime));
 
+            /*if(Mathf.Abs(Vector3.Magnitude(move)) > 0 && !_walking)
+            {
+                SoundManager.PlaySound(SoundType.STEPS);
+                _walking = true;
+            }
+            else if (Mathf.Abs(Vector3.Magnitude(move)) == 0)
+                _walking = false;*/
+                
             _rb.MovePosition(_rb.position + move);
         }
 

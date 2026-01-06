@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 namespace Tech.Scripts.Objects
@@ -25,6 +26,8 @@ namespace Tech.Scripts.Objects
 
             if(_strings.Count <= solution.Count)
                 _strings.Add(chemic.color);
+
+            SoundManager.PlaySound(SoundType.BOTTLE);
 
             foreach (string s in _strings)
                 print(s);
