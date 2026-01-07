@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 160786595adc8b04dbe18f431a17df4c
+guid: 7220fe7046b769944a065d34db9d9026
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: openPBR_shader2
-    second: {fileID: 2100000, guid: 6835700c45ce609428d315734f6aa213, type: 2}
+      name: Light
+    second: {fileID: 2100000, guid: 475231ac3de6329489e68ecdd4e7d8ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ring
+    second: {fileID: 2100000, guid: 1c460eabe8100ef4ab74bf229a33b933, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

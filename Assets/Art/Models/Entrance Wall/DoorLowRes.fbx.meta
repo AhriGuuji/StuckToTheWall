@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 160786595adc8b04dbe18f431a17df4c
+guid: dd725affbd4fe834080e45d06ca24d39
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: openPBR_shader2
-    second: {fileID: 2100000, guid: 6835700c45ce609428d315734f6aa213, type: 2}
+      name: Maya_Lambert1
+    second: {fileID: 2100000, guid: ab39f8998e48f3743936c271a0249cc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
